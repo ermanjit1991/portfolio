@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manjit | Web Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Roboto',sans-serif; background:#f5f6fa; color:#333; scroll-behavior:smooth; }
+a { text-decoration:none; color:inherit; }
+h2 { text-align:center; color:#0073e6; margin-bottom:20px; font-family:'Montserrat',sans-serif; }
+
+/* Navbar */
+nav { position:fixed; top:0; left:0; right:0; display:flex; justify-content:space-between; align-items:center; padding:15px 20px; background:rgba(255,255,255,0.95); box-shadow:0 2px 8px rgba(0,0,0,0.1); z-index:999; }
+nav ul { display:flex; list-style:none; gap:30px; }
+nav a { color:#0073e6; font-weight:500; transition:0.3s; }
+nav a:hover { color:#004a99; }
+.logo { font-family:'Montserrat',sans-serif; font-weight:bold; font-size:1.3rem; color:#0073e6; }
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+.hamburger div { width:25px; height:3px; background:#0073e6; transition:0.3s; }
+
+/* Hero */
+header { min-height:80vh; background:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat; display:flex; justify-content:center; align-items:center; position:relative; padding:80px 20px; color:white; text-align:center; }
+header::after { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,115,230,0.7); }
+header .content { position:relative; z-index:1; max-width:800px; }
+header h1 { font-family:'Montserrat',sans-serif; font-size:3rem; margin-bottom:10px; }
+header p { font-size:1.3rem; margin-bottom:20px; }
+header .buttons { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px; }
+header .buttons a { padding:14px 30px; border-radius:30px; font-weight:bold; background:#fff; color:#0073e6; transition:0.3s; }
+header .buttons a:hover { background:#e6f0ff; }
+
+/* Sections */
+section { max-width:1000px; margin:40px auto; padding:40px 20px; text-align:center; }
+section h2 { margin-bottom:30px; }
+
+/* About */
+.about p { font-size:1.1rem; max-width:800px; margin:auto; }
+
+/* Services */
+.services ul { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; list-style:none; margin:0 auto; padding:0; }
+.services li { background:#fff; padding:20px; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.1); display:flex; flex-direction:column; justify-content:space-between; text-align:center; transition:0.3s; min-height:250px; }
+.services li:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
+.services li i { font-size:2rem; color:#0073e6; margin-bottom:15px; }
+
+/* Portfolio */
+.portfolio .portfolio-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; margin:0 auto; }
+.portfolio .card { display:flex; flex-direction:column; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,0.1); transition:0.3s; min-height:350px; }
+.portfolio .card:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
+.portfolio img { width:100%; height:180px; object-fit:cover; display:block; cursor:pointer; }
+.portfolio .card-content { padding:15px; flex-grow:1; }
+.portfolio a { display:inline-block; margin-top:12px; font-weight:bold; color:#0073e6; }
+
+/* Lightbox */
+#lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000; }
+#lightbox img { max-width:90%; max-height:80%; border-radius:10px; }
+
+/* Contact */
+.contact { display:flex; flex-direction:column; align-items:center; gap:15px; }
+.contact a { color:#0073e6; font-weight:bold; }
+
+/* Footer */
+footer { text-align:center; background:#333; color:#fff; padding:25px; border-radius:12px 12px 0 0; }
+
+/* Responsive */
+@media(max-width:768px){
+  nav ul { display:none; flex-direction:column; gap:15px; position:absolute; top:60px; right:20px; background:#fff; padding:15px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
+  nav ul.active { display:flex; }
+  .hamburger { display:flex; }
+  header h1 { font-size:2.2rem; }
+  header p { font-size:1rem; }
+  .services ul, .portfolio .portfolio-grid { grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); }
+  .portfolio img { height:auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="logo">Manjit</div>
+  <div class="hamburger" id="hamburger"><div></div><div></div><div></div></div>
+  <ul id="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<header>
+  <div class="content">
+    <h1>Manjit — Web Developer</h1>
+    <p>Building modern, responsive websites that help businesses grow.</p>
+    <div class="buttons">
+      <a href="files/SoftwareDeveloper_Manjit.pdf" download>Download Resume</a>
+      <a href="mailto:er.manjit1991@gmail.com?subject=Website%20Project%20Inquiry">Hire Me</a>
+    </div>
+  </div>
+</header>
+
+<!-- About -->
+<section class="about" id="about">
+  <h2>About Me</h2>
+  <p>I’m a Calgary-based Web Developer with 7 years of experience in full-stack development. I specialize in building custom websites, e-commerce stores, and scalable web applications. I love helping businesses upgrade their online presence with fast, mobile-friendly solutions.</p>
+</section>
+
+<!-- Services -->
+<section class="services" id="services">
+  <h2>Services</h2>
+  <ul>
+    <li><i class="fas fa-code"></i><h3>Custom Websites</h3><p>React, Next.js, WordPress development for modern, responsive websites.</p></li>
+    <li><i class="fas fa-shopping-cart"></i><h3>E-commerce Solutions</h3><p>Shopify & WooCommerce stores with secure payment integration.</p></li>
+    <li><i class="fas fa-sync-alt"></i><h3>Website Redesigns</h3><p>Improved speed, SEO, and mobile-friendly design for existing sites.</p></li>
+    <li><i class="fas fa-tools"></i><h3>Maintenance & Support</h3><p>Ongoing support plans to keep websites secure and updated.</p></li>
+  </ul>
+</section>
+
+<!-- Portfolio -->
+<section class="portfolio" id="portfolio">
+  <h2>Portfolio</h2>
+  <div class="portfolio-grid">
+    <div class="card">
+      <img src="https://picsum.photos/seed/pic1/600/400" alt="Local Business Website">
+      <div class="card-content">
+        <h3>Local Business Website</h3>
+        <p>Redesigned a Calgary retail store website, boosting mobile speed by 40%.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://picsum.photos/seed/pic2/600/400" alt="E-commerce Store">
+      <div class="card-content">
+        <h3>E-commerce Store</h3>
+        <p>Built a Shopify store with 200+ products and integrated payment gateway.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://picsum.photos/seed/pic3/600/400" alt="Personal Portfolio">
+      <div class="card-content">
+        <h3>Personal Portfolio</h3>
+        <p>Created a clean, responsive portfolio site to showcase my work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox"><img src="" alt="Portfolio Image"></div>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:er.manjit1991@gmail.com">er.manjit1991@gmail.com</a></p>
+  <p>LinkedIn: <a href="https://linkedin.com/in/manjit-30389778" target="_blank">Manjit Web Developer</a></p>
+  <p>Let’s discuss your project!</p>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 Manjit | Web Developer | Calgary, Alberta</p>
+</footer>
+
+<script>
+// Hamburger menu toggle
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+
+// Lightbox functionality
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = lightbox.querySelector('img');
+document.querySelectorAll('.portfolio img').forEach(img => {
+  img.addEventListener('click', () => {
+    lightbox.style.display = 'flex';
+    lightboxImg.src = img.src;
+  });
+});
+lightbox.addEventListener('click', () => { lightbox.style.display = 'none'; });
+</script>
+
+</body>
+</html>
