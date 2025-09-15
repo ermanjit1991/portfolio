@@ -8,13 +8,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
+/* Reset & Base */
 * { box-sizing:border-box; margin:0; padding:0; }
-body { font-family:'Roboto',sans-serif; background:#f5f6fa; color:#333; scroll-behavior:smooth; }
+body { font-family:'Roboto',sans-serif; background:#f5f6fa; color:#333; scroll-behavior:smooth; transition: background 0.3s, color 0.3s; }
 a { text-decoration:none; color:inherit; }
 h2 { text-align:center; color:#0073e6; margin-bottom:20px; font-family:'Montserrat',sans-serif; }
+.dark-mode { background:#1e1e1e; color:#f5f5f5; }
+.dark-mode nav { background: rgba(30,30,30,0.95); }
+.dark-mode .services li, .dark-mode .portfolio .card { background:#2c2c2c; color:#f5f5f5; }
+.dark-mode footer { background:#111; }
 
 /* Navbar */
-nav { position:fixed; top:0; left:0; right:0; display:flex; justify-content:space-between; align-items:center; padding:15px 20px; background:rgba(255,255,255,0.95); box-shadow:0 2px 8px rgba(0,0,0,0.1); z-index:999; }
+nav { position:fixed; top:0; left:0; right:0; display:flex; justify-content:space-between; align-items:center; padding:15px 20px; background:rgba(255,255,255,0.95); box-shadow:0 2px 8px rgba(0,0,0,0.1); z-index:999; transition: background 0.3s; }
 nav ul { display:flex; list-style:none; gap:30px; }
 nav a { color:#0073e6; font-weight:500; transition:0.3s; }
 nav a:hover { color:#004a99; }
@@ -25,7 +30,7 @@ nav a:hover { color:#004a99; }
 /* Hero */
 header { min-height:80vh; background:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat; display:flex; justify-content:center; align-items:center; position:relative; padding:80px 20px; color:white; text-align:center; }
 header::after { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,115,230,0.7); }
-header .content { position:relative; z-index:1; max-width:800px; }
+header .content { position:relative; z-index:1; max-width:800px; opacity:0; transform: translateY(20px); animation: fadeInUp 1s forwards; }
 header h1 { font-family:'Montserrat',sans-serif; font-size:3rem; margin-bottom:10px; }
 header p { font-size:1.3rem; margin-bottom:20px; }
 header .buttons { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px; }
@@ -33,7 +38,7 @@ header .buttons a { padding:14px 30px; border-radius:30px; font-weight:bold; bac
 header .buttons a:hover { background:#e6f0ff; }
 
 /* Sections */
-section { max-width:1000px; margin:40px auto; padding:40px 20px; text-align:center; }
+section { max-width:1000px; margin:60px auto; padding:40px 20px; text-align:center; }
 section h2 { margin-bottom:30px; }
 
 /* About */
@@ -41,21 +46,27 @@ section h2 { margin-bottom:30px; }
 
 /* Services */
 .services ul { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; list-style:none; margin:0 auto; padding:0; }
-.services li { background:#fff; padding:20px; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.1); display:flex; flex-direction:column; justify-content:space-between; text-align:center; transition:0.3s; min-height:250px; }
+.services li { background:#fff; padding:20px; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.1); display:flex; flex-direction:column; justify-content:space-between; text-align:center; transition:0.3s, transform 0.3s; min-height:250px; opacity:0; transform:translateY(20px); animation: fadeInUp 0.8s forwards; }
+.services li:nth-child(1){animation-delay:0.2s;} 
+.services li:nth-child(2){animation-delay:0.4s;} 
+.services li:nth-child(3){animation-delay:0.6s;} 
+.services li:nth-child(4){animation-delay:0.8s;} 
 .services li:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
 .services li i { font-size:2rem; color:#0073e6; margin-bottom:15px; }
 
 /* Portfolio */
 .portfolio .portfolio-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; margin:0 auto; }
-.portfolio .card { display:flex; flex-direction:column; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,0.1); transition:0.3s; min-height:350px; }
+.portfolio .card { display:flex; flex-direction:column; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,0.1); transition:0.3s; min-height:350px; opacity:0; transform:translateY(20px); animation: fadeInUp 0.8s forwards; }
+.portfolio .card:nth-child(1){animation-delay:0.2s;} 
+.portfolio .card:nth-child(2){animation-delay:0.4s;} 
+.portfolio .card:nth-child(3){animation-delay:0.6s;} 
+.portfolio .card:nth-child(4){animation-delay:0.8s;} 
 .portfolio .card:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
-.portfolio img { width:100%; height:180px; object-fit:cover; display:block; cursor:pointer; }
+.portfolio img { width:100%; height:180px; object-fit:cover; display:block; cursor:pointer; transition:0.3s; }
+.portfolio img:hover { transform:scale(1.05); }
 .portfolio .card-content { padding:15px; flex-grow:1; }
-.portfolio a { display:inline-block; margin-top:12px; font-weight:bold; color:#0073e6; }
-
-/* Lightbox */
-#lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000; }
-#lightbox img { max-width:90%; max-height:80%; border-radius:10px; }
+.portfolio a { display:inline-block; margin-top:12px; font-weight:bold; color:#0073e6; transition:0.3s; }
+.portfolio a:hover { color:#004a99; }
 
 /* Contact */
 .contact { display:flex; flex-direction:column; align-items:center; gap:15px; }
@@ -63,6 +74,9 @@ section h2 { margin-bottom:30px; }
 
 /* Footer */
 footer { text-align:center; background:#333; color:#fff; padding:25px; border-radius:12px 12px 0 0; }
+
+/* Animations */
+@keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
 
 /* Responsive */
 @media(max-width:768px){
@@ -74,6 +88,10 @@ footer { text-align:center; background:#333; color:#fff; padding:25px; border-ra
   .services ul, .portfolio .portfolio-grid { grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); }
   .portfolio img { height:auto; }
 }
+
+/* Lightbox */
+#lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000; }
+#lightbox img { max-width:90%; max-height:80%; border-radius:10px; }
 </style>
 </head>
 <body>
@@ -87,6 +105,7 @@ footer { text-align:center; background:#333; color:#fff; padding:25px; border-ra
     <li><a href="#services">Services</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><button onclick="toggleDarkMode()">🌙 Dark Mode</button></li>
   </ul>
 </nav>
 
@@ -112,40 +131,49 @@ footer { text-align:center; background:#333; color:#fff; padding:25px; border-ra
 <section class="services" id="services">
   <h2>Services</h2>
   <ul>
-    <li><i class="fas fa-code"></i><h3>Custom Websites</h3><p>React, Next.js, WordPress development for modern, responsive websites.</p></li>
-    <li><i class="fas fa-shopping-cart"></i><h3>E-commerce Solutions</h3><p>Shopify & WooCommerce stores with secure payment integration.</p></li>
+    <li><i class="fas fa-code"></i><h3>Custom Websites</h3><p>WordPress and HTML development for modern, responsive websites.</p></li>
+    <li><i class="fas fa-shopping-cart"></i><h3>E-commerce Solutions</h3><p>WooCommerce stores with secure payment integration.</p></li>
     <li><i class="fas fa-sync-alt"></i><h3>Website Redesigns</h3><p>Improved speed, SEO, and mobile-friendly design for existing sites.</p></li>
     <li><i class="fas fa-tools"></i><h3>Maintenance & Support</h3><p>Ongoing support plans to keep websites secure and updated.</p></li>
   </ul>
 </section>
 
 <!-- Portfolio -->
+<<!-- Portfolio -->
 <section class="portfolio" id="portfolio">
   <h2>Portfolio</h2>
   <div class="portfolio-grid">
     <div class="card">
-      <img src="https://picsum.photos/seed/pic1/600/400" alt="Local Business Website">
-      <div class="card-content">
-        <h3>Local Business Website</h3>
-        <p>Redesigned a Calgary retail store website, boosting mobile speed by 40%.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://picsum.photos/seed/pic2/600/400" alt="E-commerce Store">
-      <div class="card-content">
-        <h3>E-commerce Store</h3>
-        <p>Built a Shopify store with 200+ products and integrated payment gateway.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://picsum.photos/seed/pic3/600/400" alt="Personal Portfolio">
-      <div class="card-content">
-        <h3>Personal Portfolio</h3>
-        <p>Created a clean, responsive portfolio site to showcase my work.</p>
-      </div>
-    </div>
+  <img src="images/task-manager.png" alt="Task Manager">
+  <div class="card-content">
+    <h3>Task Manager</h3>
+    <p>Interactive task management app with mark complete, edit & delete functionality.</p>
+    <a href="https://ermanjit1991.github.io/task-manager" target="_blank">View Project</a>
+  </div>
+</div>
+
+<div class="card">
+  <img src="images/expense-tracker.png" alt="Expense Tracker">
+  <div class="card-content">
+    <h3>Expense Tracker</h3>
+    <p>Track daily expenses with analytics and summary charts.</p>
+    <a href="https://ermanjit1991.github.io/ExpenseTracker/" target="_blank">View Project</a>
+  </div>
+</div>
+
+<div class="card">
+  <img src="images/weather-dashboard.png" alt="Weather Dashboard">
+  <div class="card-content">
+    <h3>Weather Dashboard</h3>
+    <p>Check real-time weather info with 5-day forecast using OpenWeatherMap API.</p>
+    <a href="https://ermanjit1991.github.io/weather-dashboard" target="_blank">View Project</a>
+  </div>
+</div>
+
+
   </div>
 </section>
+
 
 <!-- Lightbox -->
 <div id="lightbox"><img src="" alt="Portfolio Image"></div>
@@ -164,21 +192,24 @@ footer { text-align:center; background:#333; color:#fff; padding:25px; border-ra
 </footer>
 
 <script>
-// Hamburger menu toggle
+// Hamburger toggle
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
 hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
 
-// Lightbox functionality
+// Dark Mode Toggle
+function toggleDarkMode(){ document.body.classList.toggle('dark-mode'); }
+
+// Lightbox
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
 document.querySelectorAll('.portfolio img').forEach(img => {
   img.addEventListener('click', () => {
-    lightbox.style.display = 'flex';
-    lightboxImg.src = img.src;
+    lightbox.style.display='flex';
+    lightboxImg.src=img.src;
   });
 });
-lightbox.addEventListener('click', () => { lightbox.style.display = 'none'; });
+lightbox.addEventListener('click',()=>{ lightbox.style.display='none'; });
 </script>
 
 </body>
