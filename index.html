@@ -1696,18 +1696,35 @@
             phoneField.addEventListener('input', updateSubmitButton);
             messageField.addEventListener('input', updateSubmitButton);
 
-            // Form submission
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                if (validateName() && validateEmail() && validatePhone() && validateMessage()) {
-                    // Show success message
-                    showSuccessMessage();
-                    // Reset form
-                    form.reset();
-                    updateSubmitButton();
-                }
-            });
+           // Form submission
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    if (validateName() && validateEmail() && validatePhone() && validateMessage()) {
+                        // Actually submit the form to Formspree
+                        const formData = new FormData(form);
+                        
+                        fetch(form.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        })
+        .then(response => {
+            if (response.ok) {
+                showSuccessMessage();
+                form.reset();
+                updateSubmitButton();
+            } else {
+                alert('There was a problem submitting your form. Please try again.');
+            }
+        })
+        .catch(error => {
+            alert('There was a problem submitting your form. Please try again.');
+        });
+    }
+});
 
             function showSuccessMessage() {
                 // Create success message if it doesn't exist
